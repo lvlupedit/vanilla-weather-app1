@@ -92,18 +92,9 @@
   font-family: "Oswald", sans-serif;
   font-size: 180px;
   font-weight: 500;
-
   text-align: center;
   color: #efefef;
   margin-bottom: 30px;
-}
-
-.another-system {
-  text-decoration: none;
-  color: #f6d365;
-  line-height: 180px;
-  vertical-align: text-top;
-  font-size: 40px;
 }
 
 .description {
