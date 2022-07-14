@@ -35,16 +35,23 @@ function formatDate() {
 
 formatDate();
 
-let city = document.querySelector("#city-input");
-let cityHeading = document.querySelector("#city-name");
-
 function displayWeather(response) {
   let temp = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#temperature-main");
   let description = document.querySelector("#description-main");
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+
+  console.log(response.data);
   description.innerHTML = response.data.weather[0].description;
   currentTemp.innerHTML = `${temp}`;
 }
+
+let city = document.querySelector("#city-input");
+let cityHeading = document.querySelector("#city-name");
 
 function inputCity(event) {
   event.preventDefault();
