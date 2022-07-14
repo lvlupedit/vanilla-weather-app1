@@ -40,14 +40,19 @@ function displayWeather(response) {
   let currentTemp = document.querySelector("#temperature-main");
   let description = document.querySelector("#description-main");
   let iconElement = document.querySelector("#weather-icon");
+  let maximumTemperatureElement = document.querySelector("#maximum-temp");
+  let minimumTemperatureElement = document.querySelector("#minimum-temp");
+  let maxTemp = Math.round(response.data.main.temp_max);
+  let minTemp = Math.round(response.data.main.temp_min);
+  console.log(response.data);
+  description.innerHTML = response.data.weather[0].description;
+  currentTemp.innerHTML = `${temp}`;
   iconElement.setAttribute(
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-
-  console.log(response.data);
-  description.innerHTML = response.data.weather[0].description;
-  currentTemp.innerHTML = `${temp}`;
+  maximumTemperatureElement.innerHTML = `${maxTemp}`;
+  minimumTemperatureElement.innerHTML = `${minTemp}`;
 }
 
 let city = document.querySelector("#city-input");
