@@ -19,15 +19,6 @@
 #city-name {
   text-transform: capitalize;
 }
-.carousel-caption h5 {
-  font-family: "Oswald", sans-serif;
-  font-size: 65px;
-}
-
-.carousel-caption p {
-  font-family: "Roboto", sans-serif;
-  font-size: 30px;
-}
 
 .app-box {
   width: 770px;
@@ -96,19 +87,18 @@
   font-family: "Oswald", sans-serif;
   font-size: 180px;
   font-weight: 500;
-  padding: 10px;
+
   text-align: center;
   color: #efefef;
-}
-
-.change-system {
-  font-size: 40px;
-  vertical-align: super;
+  margin-bottom: 30px;
 }
 
 .another-system {
   text-decoration: none;
   color: #f6d365;
+  line-height: 180px;
+  vertical-align: text-top;
+  font-size: 40px;
 }
 
 .description {
@@ -127,17 +117,23 @@
   margin-bottom: 50px;
 }
 
-.carousel {
-  border-radius: 30px;
+.d-block {
+  opacity: 0.8;
+  border-radius: 60px;
   margin: 30px;
   max-width: 450px;
   display: block;
   margin: 0 auto;
 }
 
-.d-block {
-  opacity: 0.8;
-  border-radius: 40px;
+.carousel-caption h5 {
+  font-family: "Oswald", sans-serif;
+  font-size: 65px;
+}
+
+.carousel-caption p {
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
 }
 
 .credit {
@@ -146,4 +142,14 @@
   font-size: 25px;
   margin-top: 30px;
   opacity: 0.7;
+}
+
+.open-source-code {
+  color: #f6d365;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.open-source-code:hover {
+  color: #fda085;
 }
