@@ -76,6 +76,10 @@
   --x: 100%;
 }
 
+.button-icon {
+  width: 40px;
+}
+
 .location-and-date {
   font-family: "Oswald", sans-serif;
   text-align: center;
