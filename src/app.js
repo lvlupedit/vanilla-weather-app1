@@ -35,6 +35,22 @@ function formatDate() {
 
 formatDate();
 
+function displayForecast(response) {
+  console.log(response);
+  let forecastMaxTemp = document.querySelector("#forecast-max-temp");
+  let forecastMinTemp = document.querySelector("#forecast-min-temp");
+}
+
+function getForecast(coordinates) {
+  let apiKey = "e0a95184cf76d90f7e0a3057615fd9d3";
+  let forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?`;
+  axios
+    .get(
+      `${forecastApiUrl}lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
+    )
+    .then(displayForecast);
+}
+
 function displayWeather(response) {
   let temp = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#temperature-main");
@@ -44,7 +60,6 @@ function displayWeather(response) {
   let minimumTemperatureElement = document.querySelector("#minimum-temp");
   let maxTemp = Math.round(response.data.main.temp_max);
   let minTemp = Math.round(response.data.main.temp_min);
-  console.log(response.data);
   description.innerHTML = response.data.weather[0].description;
   currentTemp.innerHTML = `${temp}`;
   iconElement.setAttribute(
@@ -53,6 +68,8 @@ function displayWeather(response) {
   );
   maximumTemperatureElement.innerHTML = `${maxTemp}`;
   minimumTemperatureElement.innerHTML = `${minTemp}`;
+
+  getForecast(response.data.coord);
 }
 
 let city = document.querySelector("#city-input");
