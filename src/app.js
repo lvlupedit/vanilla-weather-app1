@@ -35,10 +35,45 @@ function formatDate() {
 
 formatDate();
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+formatDay();
+
 function displayForecast(response) {
   console.log(response);
-  let forecastMaxTemp = document.querySelector("#forecast-max-temp");
-  let forecastMinTemp = document.querySelector("#forecast-min-temp");
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector(".carousel-caption");
+  let forecastHTML = `<div class="carousel-caption d-none d-md-block">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+       <h5>
+         ${formatDay(forecastDay.dt)} <br>
+                <img src="https://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }@2x.png" alt="weather-icon"> <br />
+                 <span  class="forecast-temperature">${Math.round(
+                   forecastDay.temp.max
+                 )}°C <small class="forecast-min-temp">${Math.round(
+          forecastDay.temp.min
+        )}°C</small> </span> 
+              </h5>
+              <p class="forecast-weather-description">${
+                forecastDay.weather[0].description
+              }</p>  
+  `;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
