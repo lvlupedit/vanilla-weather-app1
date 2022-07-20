@@ -124,7 +124,16 @@
 
 .carousel-caption h5 {
   font-family: "Oswald", sans-serif;
+  font-size: 50px;
+  line-height: 85px;
+}
+
+.carousel-caption .forecast-temperature {
   font-size: 65px;
+}
+
+.forecast-min-temp {
+  opacity: 0.7;
 }
 
 .carousel-caption p {
