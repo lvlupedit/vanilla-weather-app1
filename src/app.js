@@ -95,6 +95,7 @@ function displayWeather(response) {
   let minimumTemperatureElement = document.querySelector("#minimum-temp");
   let maxTemp = Math.round(response.data.main.temp_max);
   let minTemp = Math.round(response.data.main.temp_min);
+  let cityHeading = document.querySelector("#city-name");
   description.innerHTML = response.data.weather[0].description;
   currentTemp.innerHTML = `${temp}`;
   iconElement.setAttribute(
@@ -103,23 +104,42 @@ function displayWeather(response) {
   );
   maximumTemperatureElement.innerHTML = `${maxTemp}`;
   minimumTemperatureElement.innerHTML = `${minTemp}`;
-
+  cityHeading.innerHTML = `${response.data.name}`;
+  console.log(response.data);
   getForecast(response.data.coord);
 }
 
-let city = document.querySelector("#city-input");
-let cityHeading = document.querySelector("#city-name");
+function searchCity(city) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayWeather);
+}
 
-function inputCity(event) {
+function searchLocation(position) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayWeather);
+}
+
+function getCurrentLocation(event) {
   event.preventDefault();
-  cityHeading.innerHTML = `${city.value}`;
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
 
-  axios
-    .get(`${apiUrl}q=${city.value}&appid=${apiKey}&units=metric`)
-    .then(displayWeather);
+function searchHandle(event) {
+  event.preventDefault();
+  let cityinput = document.querySelector("#city-input");
+  let city = cityinput.value;
+  searchCity(city);
 }
 
 let form = document.querySelector("#search-form");
-form.addEventListener("submit", inputCity);
+form.addEventListener("submit", searchHandle);
 let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
 let apiKey = "e0a95184cf76d90f7e0a3057615fd9d3";
+
+let currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.addEventListener("click", getCurrentLocation);
+
+searchCity("Barcelona");
