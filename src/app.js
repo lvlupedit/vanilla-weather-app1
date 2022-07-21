@@ -93,6 +93,7 @@ function displayWeather(response) {
   let iconElement = document.querySelector("#weather-icon");
   let maximumTemperatureElement = document.querySelector("#maximum-temp");
   let minimumTemperatureElement = document.querySelector("#minimum-temp");
+  let windspeedElement = document.querySelector("#windspeed");
   let maxTemp = Math.round(response.data.main.temp_max);
   let minTemp = Math.round(response.data.main.temp_min);
   let cityHeading = document.querySelector("#city-name");
@@ -104,6 +105,9 @@ function displayWeather(response) {
   );
   maximumTemperatureElement.innerHTML = `${maxTemp}`;
   minimumTemperatureElement.innerHTML = `${minTemp}`;
+  windspeedElement.innerHTML = `Windspeed: ${Math.round(
+    response.data.wind.speed
+  )} km/h`;
   cityHeading.innerHTML = `${response.data.name}`;
   console.log(response.data);
   getForecast(response.data.coord);
