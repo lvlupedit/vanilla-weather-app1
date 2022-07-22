@@ -150,6 +150,10 @@
   font-size: 30px;
 }
 
+.forecast-weather-description {
+  text-transform: capitalize;
+}
+
 .credit {
   text-align: center;
   font-family: "Roboto", sans-serif;
