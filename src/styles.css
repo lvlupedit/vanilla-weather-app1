@@ -22,7 +22,7 @@
 
 .app-box {
   width: 780px;
-  position: fixed;
+  position: relative;
   margin: 40px auto;
   left: 0;
   right: 0;
