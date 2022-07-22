@@ -46,33 +46,41 @@ function formatDay(timestamp) {
 formatDay();
 
 function displayForecast(response) {
-  console.log(response);
   let forecast = response.data.daily;
-  let forecastElement = document.querySelector(".carousel-caption");
-  let forecastHTML = `<div class="carousel-caption d-none d-md-block">`;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = "";
   forecast.forEach(function (forecastDay, index) {
     if (index < 5) {
       forecastHTML =
         forecastHTML +
         `
-       <h5>
-         ${formatDay(forecastDay.dt)} <br>
+        <div class="carousel-item ${index === 0 && "active"}">
+            <img
+              src="visuals/gradient-square.png"
+              class="d-block w-100"
+              alt="gradient-background"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>
+                ${formatDay(forecastDay.dt)} <br />
                 <img src="https://openweathermap.org/img/wn/${
                   forecastDay.weather[0].icon
-                }@2x.png" alt="weather-icon"> <br />
-                 <span  class="forecast-temperature">${Math.round(
-                   forecastDay.temp.max
-                 )}°C <small class="forecast-min-temp">${Math.round(
+                }@2x.png" alt="weather-icon"> 
+                <br />
+                <span  class="forecast-temperature">${Math.round(
+                  forecastDay.temp.max
+                )}°C <small class="forecast-min-temp">${Math.round(
           forecastDay.temp.min
         )}°C</small> </span> 
-              </h5>
-              <p class="forecast-weather-description">${
-                forecastDay.weather[0].description
-              }</p>  
+             </h5>
+             <p class="forecast-weather-description">${
+               forecastDay.weather[0].description
+             }</p> 
+            </div>
+          </div>
   `;
     }
   });
-  forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
@@ -109,7 +117,7 @@ function displayWeather(response) {
     response.data.wind.speed
   )} km/h`;
   cityHeading.innerHTML = `${response.data.name}`;
-  console.log(response.data);
+
   getForecast(response.data.coord);
 }
 
